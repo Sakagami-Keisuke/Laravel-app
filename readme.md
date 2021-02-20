@@ -11,9 +11,11 @@ Copyright (c) 1997-2018 The PHP Group
 Zend Engine v3.3.24, Copyright (c) 1998-2018 Zend Technologies
 ```
 
-# LARAVEL PROJECT CREATE
+# Laravel project Create
 
 ```PHP:
+# /Applications/MAMP/htdocs/laravel-app
+
 ~%cd /Applications/MAMP
 MAMP%ls
 Icon?				LISEZ-MOI.rtf			README.rtf			conf				htdocs				tmp
@@ -51,7 +53,7 @@ Edit
 /Applications/MAMP/htdocs/laravel-app/.env
 /Applications/MAMP/htdocs/laravel-app/config/database.php
 
-commit :
+commit : e5a40c8
 
 Udemyの解説ではDB接続エラーとなった
 解決：【Laravel】access deniedが表示されたときの対処法
