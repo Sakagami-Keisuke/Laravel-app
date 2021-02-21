@@ -142,8 +142,10 @@ Psy Shell v0.9.12 (PHP 7.3.24-(to be removed in future macOS) — cli) by Justin
 laravel-app%php artisan make:controller TestController
 Controller created successfully.
 
+# よく使用するヘルパ
+route, auth, app, bcrypt, collect, dd, env, factory, old, view
 
-
+https://readouble.com/laravel/6.x/ja/helpers.html
 
 # Requirement definition 要件定義
 参考：要件定義～システム設計ができる人材になれる記事
