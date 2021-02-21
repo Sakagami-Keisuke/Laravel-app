@@ -101,6 +101,53 @@ laravel-app%php artisan make:migration create_tests_table
 laravel-app%php artisan migrate
 
 
+# tinker
+
+```PHP:
+laravel-app%php artisan tinker 
+Psy Shell v0.9.12 (PHP 7.3.24-(to be removed in future macOS) — cli) by Justin Hileman
+>>> $test = new App\Models\Test;
+=> App\Models\Test {#3211}
+>>> $test->text = "aaa";
+=> "aaa"
+>>> $test->save();
+=> true
+>>> $test2 = new App\Models\Test;
+=> App\Models\Test {#3212}
+>>> $test2->text = "tinkerで入力したよ";
+=> "tinkerで入力したよ"
+>>> $test2->save();
+=> true
+>>> App\Models\Test::all();
+=> Illuminate\Database\Eloquent\Collection {#4145
+     all: [
+       App\Models\Test {#4146
+         id: 1,
+         text: "aaa",
+         created_at: "2021-02-21 02:26:07",
+         updated_at: "2021-02-21 02:26:07",
+       },
+       App\Models\Test {#4147
+         id: 2,
+         text: "tinkerで入力したよ",
+         created_at: "2021-02-21 02:33:00",
+         updated_at: "2021-02-21 02:33:00",
+       },
+     ],
+   }
+>>>
+```
+
+
+
+
+# Requirement definition 要件定義
+参考：要件定義～システム設計ができる人材になれる記事
+https://qiita.com/Saku731/items/741fcf0f40dd989ee4f8
+
+# Basic Design 基本設計
+　1)画面設計(View), 2)機能設計(Controller), 3)データ設計(model/DB)
+
 
 # php artisan list
 Laravel Framework 6.20.16
