@@ -137,6 +137,10 @@ Psy Shell v0.9.12 (PHP 7.3.24-(to be removed in future macOS) — cli) by Justin
    }
 >>>
 ```
+# Controller
+/app/Http/Controllers/TestController.php
+laravel-app%php artisan make:controller TestController
+Controller created successfully.
 
 
 
