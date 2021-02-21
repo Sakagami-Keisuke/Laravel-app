@@ -156,111 +156,111 @@ https://qiita.com/Saku731/items/741fcf0f40dd989ee4f8
 
 
 # php artisan list
-Laravel Framework 6.20.16
-Usage:
-  command [options] [arguments]
-Options:
-  -h, --help            Display this help message
-  -q, --quiet           Do not output any message
-  -V, --version         Display this application version
-      --ansi            Force ANSI output
-      --no-ansi         Disable ANSI output
-  -n, --no-interaction  Do not ask any interactive question
-      --env[=ENV]       The environment the command should run under
-  -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+## Laravel Framework 6.20.16
+### Usage:
+-  command [options] [arguments]
+### Options:
+-  -h, --help            &ensp; #Display this help message
+-  -q, --quiet           &ensp; #Do not output any message
+-  -V, --version         &ensp; #Display this application version
+-      --ansi            &ensp; #Force ANSI output
+-      --no-ansi         &ensp; #Disable ANSI output
+###  -n, --no-interaction  Do not ask any interactive question
+-      --env[=ENV]       &ensp; #The environment the command should run under
+-  -v|vv|vvv, --verbose  &ensp; #Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
 
-Available commands:
-  clear-compiled       Remove the compiled class file
-  down                 Put the application into maintenance mode
-  env                  Display the current framework environment
-  help                 Displays help for a command
-  inspire              Display an inspiring quote
-  list                 Lists commands
-  migrate              Run the database migrations
-  optimize             Cache the framework bootstrap files
-  preset               Swap the front-end scaffolding for the application
-  serve                Serve the application on the PHP development server
-  tinker               Interact with your application
-  up                   Bring the application out of maintenance mode
- auth
-  auth:clear-resets    Flush expired password reset tokens
- cache
-  cache:clear          Flush the application cache
-  cache:forget         Remove an item from the cache
-  cache:table          Create a migration for the cache database table
- config
-  config:cache         Create a cache file for faster configuration loading
-  config:clear         Remove the configuration cache file
- db
-  db:seed              Seed the database with records
-  db:wipe              Drop all tables, views, and types
- event
-  event:cache          Discover and cache the application's events and listeners
-  event:clear          Clear all cached events and listeners
-  event:generate       Generate the missing events and listeners based on registration
-  event:list           List the application's events and listeners
- key
-  key:generate         Set the application key
- make
-  make:channel         Create a new channel class
-  make:command         Create a new Artisan command
-  make:controller      Create a new controller class
-  make:event           Create a new event class
-  make:exception       Create a new custom exception class
-  make:factory         Create a new model factory
-  make:job             Create a new job class
-  make:listener        Create a new event listener class
-  make:mail            Create a new email class
-  make:middleware      Create a new middleware class
-  make:migration       Create a new migration file
-  make:model           Create a new Eloquent model class
-  make:notification    Create a new notification class
-  make:observer        Create a new observer class
-  make:policy          Create a new policy class
-  make:provider        Create a new service provider class
-  make:request         Create a new form request class
-  make:resource        Create a new resource
-  make:rule            Create a new validation rule
-  make:seeder          Create a new seeder class
-  make:test            Create a new test class
- migrate
-  migrate:fresh        Drop all tables and re-run all migrations
-  migrate:install      Create the migration repository
-  migrate:refresh      Reset and re-run all migrations
-  migrate:reset        Rollback all database migrations
-  migrate:rollback     Rollback the last database migration
-  migrate:status       Show the status of each migration
- notifications
-  notifications:table  Create a migration for the notifications table
- optimize
-  optimize:clear       Remove the cached bootstrap files
- package
-  package:discover     Rebuild the cached package manifest
- queue
-  queue:failed         List all of the failed queue jobs
-  queue:failed-table   Create a migration for the failed queue jobs database table
-  queue:flush          Flush all of the failed queue jobs
-  queue:forget         Delete a failed queue job
-  queue:listen         Listen to a given queue
-  queue:restart        Restart queue worker daemons after their current job
-  queue:retry          Retry a failed queue job
-  queue:table          Create a migration for the queue jobs database table
-  queue:work           Start processing jobs on the queue as a daemon
- route
-  route:cache          Create a route cache file for faster route registration
-  route:clear          Remove the route cache file
-  route:list           List all registered routes
- schedule
-  schedule:run         Run the scheduled commands
- session
-  session:table        Create a migration for the session database table
- storage
-  storage:link         Create a symbolic link from "public/storage" to "storage/app/public"
- vendor
-  vendor:publish       Publish any publishable assets from vendor packages
- view
-  view:cache           Compile all of the application's Blade templates
-  view:clear           Clear all compiled view files
+## Available commands:
+-  clear-compiled       &ensp; #Remove the compiled class file
+-  down                 &ensp; #Put the application into maintenance mode
+-  env                  &ensp; #Display the current framework environment
+-  help                 &ensp; #Displays help for a command
+-  inspire              &ensp; #Display an inspiring quote
+-  list                 &ensp; #Lists commands
+-  migrate              &ensp; #Run the database migrations
+-  optimize             &ensp; #Cache the framework bootstrap files
+-  preset               &ensp; #Swap the front-end scaffolding for the application
+-  serve                &ensp; #Serve the application on the PHP development server
+-  tinker               &ensp; #Interact with your application
+-  up                   &ensp; #Bring the application out of maintenance mode
+### auth
+-  auth:clear-resets    &ensp; #Flush expired password reset tokens
+- cache
+-  cache:clear          &ensp; #Flush the application cache
+-  cache:forget         &ensp; #Remove an item from the cache
+-  cache:table          &ensp; #Create a migration for the cache database table
+- config
+-  config:cache         &ensp; #Create a cache file for faster configuration loading
+-  config:clear         &ensp; #Remove the configuration cache file
+### db
+-  db:seed              &ensp; #Seed the database with records
+-  db:wipe              &ensp; #Drop all tables, views, and types
+- event
+-  event:cache          &ensp; #Discover and cache the application's events and listeners
+-  event:clear          &ensp; #Clear all cached events and listeners
+-  event:generate       &ensp; #Generate the missing events and listeners based on registration
+-  event:list           &ensp; #List the application's events and listeners
+### key
+-  key:generate         &ensp; #Set the application key
+### make
+-  make:channel         &ensp; #Create a new channel class
+-  make:command         &ensp; #Create a new Artisan command
+-  make:controller      &ensp; #Create a new controller class
+-  make:event           &ensp; #Create a new event class
+-  make:exception       &ensp; #Create a new custom exception class
+-  make:factory         &ensp; #Create a new model factory
+-  make:job             &ensp; #Create a new job class
+-  make:listener        &ensp; #Create a new event listener class
+-  make:mail            &ensp; #Create a new email class
+-  make:middleware      &ensp; #Create a new middleware class
+-  make:migration       &ensp; #Create a new migration file
+-  make:model           &ensp; #Create a new Eloquent model class
+-  make:notification    &ensp; #Create a new notification class
+-  make:observer        &ensp; #Create a new observer class
+-  make:policy          &ensp; #Create a new policy class
+-  make:provider        &ensp; #Create a new service provider class
+-  make:request         &ensp; #Create a new form request class
+-  make:resource        &ensp; #Create a new resource
+-  make:rule            &ensp; #Create a new validation rule
+-  make:seeder          &ensp; #Create a new seeder class
+-  make:test            &ensp; #Create a new test class
+### migrate
+-  migrate:fresh        &ensp; #Drop all tables and re-run all migrations
+-  migrate:install      &ensp; #Create the migration repository
+-  migrate:refresh      &ensp; #Reset and re-run all migrations
+-  migrate:reset        &ensp; #Rollback all database migrations
+-  migrate:rollback     &ensp; #Rollback the last database migration
+-  migrate:status       &ensp; #Show the status of each migration
+### notifications
+ - notifications:table  &ensp; #Create a migration for the notifications table
+### optimize
+-  optimize:clear       &ensp; #Remove the cached bootstrap files
+### package
+-  package:discover     &ensp; #Rebuild the cached package manifest
+### queue
+-  queue:failed         &ensp; #List all of the failed queue jobs
+-  queue:failed-table   &ensp; #Create a migration for the failed queue jobs database table
+-  queue:flush          &ensp; #Flush all of the failed queue jobs
+-  queue:forget         &ensp; #Delete a failed queue job
+-  queue:listen         &ensp; #Listen to a given queue
+-  queue:restart        &ensp; #Restart queue worker daemons after their current job
+-  queue:retry          &ensp; #Retry a failed queue job
+-  queue:table          &ensp; #Create a migration for the queue jobs database table
+-  queue:work           &ensp; #Start processing jobs on the queue as a daemon
+### route
+-  route:cache          &ensp; #Create a route cache file for faster route registration
+-  route:clear          &ensp; #Remove the route cache file
+-  route:list           &ensp; #List all registered routes
+### schedule
+-  schedule:run         &ensp; #Run the scheduled commands
+### session
+-  session:table        &ensp; #Create a migration for the session database table
+### storage
+-  storage:link         &ensp; #Create a symbolic link from "public/storage" to "storage/app/public"
+### vendor
+-  vendor:publish       &ensp; #Publish any publishable assets from vendor packages
+### view
+-  view:cache           &ensp; #Compile all of the application's Blade templates
+-  view:clear           &ensp; #Clear all compiled view files
 
 
 
