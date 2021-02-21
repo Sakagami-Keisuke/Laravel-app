@@ -175,15 +175,16 @@ Bootstrap scaffolding installed successfully.
 Please run "npm install && npm run dev" to compile your fresh scaffolding.
 Authentication scaffolding generated successfully.
 
-// 基本的なスカフォールドを生成
+------------------------------------
+基本的なスカフォールドを生成
 php artisan ui bootstrap
 php artisan ui vue
 php artisan ui react
-// ログイン／ユーザー登録スカフォールドを生成
+ログイン／ユーザー登録スカフォールドを生成
 php artisan ui bootstrap --auth
 php artisan ui vue --auth
 php artisan ui react --auth
-
+------------------------------------
 laravel-app%node -v
 v14.15.5
 laravel-app%npm -v
