@@ -164,10 +164,70 @@ public/index.php<br>
 4.HTTPレスポンス送信
 5.終了処理
 
-
-
 Laravelﾜｶﾝﾈ(ﾟ⊿ﾟ)から「完全に理解した（）」までステップアップ<br>
 https://qiita.com/namizatork/items/801da1d03dc322fad70c<br>
+# Laravel Bootstrap Vue スカフォールド
+- https://readouble.com/laravel/6.x/ja/frontend.html
+
+```PHP:
+laravel-app%php artisan ui bootstrap --auth
+Bootstrap scaffolding installed successfully.
+Please run "npm install && npm run dev" to compile your fresh scaffolding.
+Authentication scaffolding generated successfully.
+
+// 基本的なスカフォールドを生成
+php artisan ui bootstrap
+php artisan ui vue
+php artisan ui react
+// ログイン／ユーザー登録スカフォールドを生成
+php artisan ui bootstrap --auth
+php artisan ui vue --auth
+php artisan ui react --auth
+
+laravel-app%node -v
+v14.15.5
+laravel-app%npm -v
+6.14.11
+
+laravel-app%npm install
+create /node_modules/
+
+/package.json
+ "devDependencies": {
+        "axios": "^0.19",
+        "bootstrap": "^4.0.0",
+        "cross-env": "^5.1",
+        "jquery": "^3.2",
+        "laravel-mix": "^4.0.7",
+        "lodash": "^4.17.13",
+        "popper.js": "^1.12",
+        "resolve-url-loader": "^2.3.1",
+        "sass": "^1.15.2",
+        "sass-loader": "^7.1.0"
+    }
+
+laravel-app%npm run dev
+ DONE  Compiled successfully in 12087ms          15:17:41
+       Asset      Size   Chunks             Chunk Names
+/css/app.css   179 KiB  /js/app  [emitted]  /js/app
+  /js/app.js  1.08 MiB  /js/app  [emitted]  /js/app
+
+laravel-app%php artisan serve
+```
+
+resources/sass/app.scss
+```PHP:
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+```
+check public/css/app.css
+
 
 # php artisan list
 ## Laravel Framework 6.20.16
