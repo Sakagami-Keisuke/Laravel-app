@@ -15,3 +15,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+# ルーティング
+Route::get('tests/test', 'TestController@index');
