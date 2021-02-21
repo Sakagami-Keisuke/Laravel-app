@@ -49,14 +49,14 @@ laravel-app%git push origin master
 ```
 
 # MAMP DatabaseCreate/user-setting & 1st migrate test
-Edit
-/Applications/MAMP/htdocs/laravel-app/.env
-/Applications/MAMP/htdocs/laravel-app/config/database.php
+Edit<br>
+/Applications/MAMP/htdocs/laravel-app/.env<br>
+/Applications/MAMP/htdocs/laravel-app/config/database.php<br>
 
 commit : e5a40c8
 
-Udemyの解説ではDB接続エラーとなった
-解決：【Laravel】access deniedが表示されたときの対処法
+Udemyの解説ではDB接続エラーとなった<br>
+解決：【Laravel】access deniedが表示されたときの対処法<br>
 https://coinbaby8.com/access_denied.html
 
 ```PHP:
@@ -84,13 +84,13 @@ Migrated:  2019_08_19_000000_create_failed_jobs_table (0.04 seconds)
 ```
 
 # Model
-Eloquent / ORM : Object-Relation-Mapping
+Eloquent / ORM : Object-Relation-Mapping<br>
 
-/app/Models/Test.php
-namespace App\Models
+/app/Models/Test.php<br>
+namespace App\Models<br>
 laravel-app%php artisan make:model Models/Test
 
-- migrartionFile & ControllerFile
+- migrartionFile & ControllerFile<br>
 laravel-app%php artisan make:model Models/Test -mc
 
 ## Migration
@@ -104,7 +104,7 @@ laravel-app%php artisan migrate
 # tinker
 
 ```PHP:
-laravel-app%php artisan tinker 
+laravel-app%php artisan tinker
 Psy Shell v0.9.12 (PHP 7.3.24-(to be removed in future macOS) — cli) by Justin Hileman
 >>> $test = new App\Models\Test;
 => App\Models\Test {#3211}
@@ -138,22 +138,36 @@ Psy Shell v0.9.12 (PHP 7.3.24-(to be removed in future macOS) — cli) by Justin
 >>>
 ```
 # Controller
-/app/Http/Controllers/TestController.php
-laravel-app%php artisan make:controller TestController
+/app/Http/Controllers/TestController.php<br>
+laravel-app%php artisan make:controller TestController<br>
 Controller created successfully.
 
 # よく使用するヘルパ
-route, auth, app, bcrypt, collect, dd, env, factory, old, view
+route, auth, app, bcrypt, collect, dd, env, factory, old, view<br>
 
 https://readouble.com/laravel/6.x/ja/helpers.html
 
 # Requirement definition 要件定義
-参考：要件定義～システム設計ができる人材になれる記事
+参考：要件定義～システム設計ができる人材になれる記事<br>
 https://qiita.com/Saku731/items/741fcf0f40dd989ee4f8
 
 # Basic Design 基本設計
-　1)画面設計(View), 2)機能設計(Controller), 3)データ設計(model/DB)
+1)画面設計(View), 2)機能設計(Controller), 3)データ設計(model/DB)
 
+
+
+# エントリポイント
+public/index.php<br>
+1.オートロード・ファイル読み込み
+2.フレームワーク起動
+3.アプリケーション実行
+4.HTTPレスポンス送信
+5.終了処理
+
+
+
+Laravelﾜｶﾝﾈ(ﾟ⊿ﾟ)から「完全に理解した（）」までステップアップ<br>
+https://qiita.com/namizatork/items/801da1d03dc322fad70c<br>
 
 # php artisan list
 ## Laravel Framework 6.20.16
@@ -263,6 +277,8 @@ https://qiita.com/Saku731/items/741fcf0f40dd989ee4f8
 -  view:clear           &ensp; #Clear all compiled view files
 
 # Facade
+vendor/laravel/framework/src/Illuminate/Support/Facades<br>
+use Illuminate\Support\Facades\***;<br>
 | ファサード           | クラス                                          | サービスコンテナ結合 | 
 | -------------------- | ----------------------------------------------- | -------------------- | 
 | App                  | Illuminate\Foundation\Application               | app                  | 

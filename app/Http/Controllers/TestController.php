@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+// vendor/laravel/framework/src/Illuminate/Support/Facades
+use Illuminate\Support\Facades\DB;
 use App\Models\Test;
 
 class TestController extends Controller
@@ -12,12 +14,11 @@ class TestController extends Controller
         $values = Test::all();
         //dd($values);
 
-        $collection = collect([1, 2, 3, 4, 5, 6, 7]);
-        $chunks = $collection->chunk(4);
-        $chunks->toArray();
-        // dd($chunks);
+        $tests = DB::table('tests')
+        ->select('id')
+        ->get();
 
-
+        dd($tests);
 
         # /resources/views/tests/test.blade.php
         # http://127.0.0.1:8000/tests/test
