@@ -11,6 +11,7 @@
 |
 */
 
+# /resources/views/welcome.blade.php
 Route::get('/', function () {
     return view('welcome');
 });
