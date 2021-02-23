@@ -166,68 +166,195 @@ public/index.php<br>
 
 Laravelﾜｶﾝﾈ(ﾟ⊿ﾟ)から「完全に理解した（）」までステップアップ<br>
 https://qiita.com/namizatork/items/801da1d03dc322fad70c<br>
-# Laravel Bootstrap Vue スカフォールド
-- https://readouble.com/laravel/6.x/ja/frontend.html
 
-```PHP:
+
+# Laravel ui / Scaffoldスカフォールド(土台,足場)
+- https://readouble.com/laravel/6.x/ja/frontend.html<br>
+
+laravel-app%composer require laravel/ui:^1.0 --dev<br>
+
+```PHP:./composer.json
+"require-dev": {
+    "facade/ignition": "^1.4",
+    "fzaninotto/faker": "^1.4",
+ *  "laravel/ui": "^1.0",
+    "mockery/mockery": "^1.0",
+    "nunomaduro/collision": "^3.0",
+    "phpunit/phpunit": "^8.0"
+}
+
+///////////////////////////
+#基本的なスカフォールドを生成
+php artisan ui bootstrap
+php artisan ui vue
+php artisan ui react
+#ログイン／ユーザー登録スカフォールドを生成
+php artisan ui bootstrap --auth
+php artisan ui vue --auth
+php artisan ui react --auth
+///////////////////////////
+
 laravel-app%php artisan ui bootstrap --auth
 Bootstrap scaffolding installed successfully.
 Please run "npm install && npm run dev" to compile your fresh scaffolding.
 Authentication scaffolding generated successfully.
+#認証機能自動追加される
+
+./Applications/MAMP/htdocs/laravel-app/app/Http/Controllers/Auth
+- ForgotPasswordController.php
+- LoginController.php
+- RegisterController.php
+- ResetPasswordController.php
+- VerificationController.php
+
+./routes/web.php
+Route::get('tests/test', 'TestController@index');
+Auth::routes();
+
+./app/User.php
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+class User extends Authenticatable
+{
+    use Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+}
 
 ------------------------------------
-基本的なスカフォールドを生成
-php artisan ui bootstrap
-php artisan ui vue
-php artisan ui react
-ログイン／ユーザー登録スカフォールドを生成
-php artisan ui bootstrap --auth
-php artisan ui vue --auth
-php artisan ui react --auth
-------------------------------------
+#register, login  bootstrap適用
 laravel-app%node -v
 v14.15.5
 laravel-app%npm -v
 6.14.11
-
+/*npm installを使い、依存パッケージをインストールし終えたら、Laravel Mixを使用して、SASSファイルを通常のCSSへコンパイルできます。npm run devコマンドはwebpack.mix.jsファイル中の指示を処理します。通常、コンパイル済みCSSはpublic/cssディレクトリへ設置されます。*/
 laravel-app%npm install
 create /node_modules/
 
-/package.json
- "devDependencies": {
-        "axios": "^0.19",
-        "bootstrap": "^4.0.0",
-        "cross-env": "^5.1",
-        "jquery": "^3.2",
-        "laravel-mix": "^4.0.7",
-        "lodash": "^4.17.13",
-        "popper.js": "^1.12",
-        "resolve-url-loader": "^2.3.1",
-        "sass": "^1.15.2",
-        "sass-loader": "^7.1.0"
-    }
+./node_modules/bootstrap   %ls
+LICENSE         dist            package.json
+README.md       js              scss
+
+./package.json
+"devDependencies": {
+      "axios": "^0.19",
+      "bootstrap": "^4.0.0",
+      "cross-env": "^5.1",
+      "jquery": "^3.2",
+      "laravel-mix": "^4.0.7",
+      "lodash": "^4.17.13",
+      "popper.js": "^1.12",
+      "resolve-url-loader": "^2.3.1",
+      "sass": "^1.15.2",
+      "sass-loader": "^7.1.0"
+  }
+
 
 laravel-app%npm run dev
  DONE  Compiled successfully in 12087ms          15:17:41
-       Asset      Size   Chunks             Chunk Names
+  Asset      Size   Chunks             Chunk Names
 /css/app.css   179 KiB  /js/app  [emitted]  /js/app
   /js/app.js  1.08 MiB  /js/app  [emitted]  /js/app
-
 laravel-app%php artisan serve
-```
 
-resources/sass/app.scss
-```PHP:
+./resources/sass  %cat app.scss
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-
 // Variables
 @import 'variables';
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+#compile
+public/css/app.css
+
+
+#フロントサイドのファイル変更を監視し自動コンパイルする
+laravel-app%npm run watch<別ターミナルで起動維持する>
+&
+laravel-app%php artisan serve
+
+ WAIT  Compiling...                               11:28:21
+98% after emitting SizeLimitsPlugin
+ DONE  Compiled successfully in 1897ms            11:28:23
+  Asset     Size   Chunks             Chunk Names
+/css/app.css  179 KiB  /js/app  [emitted]  /js/app
+ + 1 hidden asset
 ```
-check public/css/app.css
+
+## Japanese localization
+./resources/lang/en
+auth.php        passwords.php
+pagination.php  validation.php
+
+https://github.com/minoryorg/laravel-resources-lang-ja
+DownLoad ZIP & open
+mv ja/  ./resources/lang
+- 'attributes' can be defined and messages can be changed as desired
+
+./config/app.php
+ // 'locale' => 'en',
+    'locale' => 'ja',
+
+- 'attributes' can be defined and messages can be changed as desired
+./resources/lang/ja/validation.php
+    'attributes' => [
+        'password' =>  'パスワード' //追記
+    ],
+
+
+# Routing check
+File output
+laravel-app%php artisan route:list > route.txt
+
+laravel-app%php artisan route:list
++--------+----------+------------------------+------------------+------------------------------------------------------------------------+--------------+
+| Domain | Method   | URI                    | Name             | Action                                                                 | Middleware   |
++--------+----------+------------------------+------------------+------------------------------------------------------------------------+--------------+
+|        | GET|HEAD | /                      |                  | Closure                                                                | web          |
+|        | GET|HEAD | api/user               |                  | Closure                                                                | api,auth:api |
+|        | GET|HEAD | home                   | home             | App\Http\Controllers\HomeController@index                              | web,auth     |
+|        | GET|HEAD | login                  | login            | App\Http\Controllers\Auth\LoginController@showLoginForm                | web,guest    |
+|        | POST     | login                  |                  | App\Http\Controllers\Auth\LoginController@login                        | web,guest    |
+|        | POST     | logout                 | logout           | App\Http\Controllers\Auth\LoginController@logout                       | web          |
+|        | POST     | password/email         | password.email   | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail  | web,guest    |
+|        | GET|HEAD | password/reset         | password.request | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm | web,guest    |
+|        | POST     | password/reset         | password.update  | App\Http\Controllers\Auth\ResetPasswordController@reset                | web,guest    |
+|        | GET|HEAD | password/reset/{token} | password.reset   | App\Http\Controllers\Auth\ResetPasswordController@showResetForm        | web,guest    |
+|        | GET|HEAD | register               | register         | App\Http\Controllers\Auth\RegisterController@showRegistrationForm      | web,guest    |
+|        | POST     | register               |                  | App\Http\Controllers\Auth\RegisterController@register                  | web,guest    |
+|        | GET|HEAD | tests/test             |                  | App\Http\Controllers\TestController@index                              | web          |
++--------+----------+------------------------+------------------+------------------------------------------------------------------------+--------------+
+
+# Multi login
+【Laravel】マルチログイン(ユーザーと管理者など)機能を設定してみた【体験談】<br>
+https://coinbaby8.com/laravel-multi-login.html<br>
 
 
 # php artisan list
