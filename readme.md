@@ -173,7 +173,7 @@ https://qiita.com/namizatork/items/801da1d03dc322fad70c<br>
 
 laravel-app%composer require laravel/ui:^1.0 --dev<br>
 
-```PHP:./composer.json
+```
 "require-dev": {
     "facade/ignition": "^1.4",
     "fzaninotto/faker": "^1.4",
@@ -182,23 +182,27 @@ laravel-app%composer require laravel/ui:^1.0 --dev<br>
     "nunomaduro/collision": "^3.0",
     "phpunit/phpunit": "^8.0"
 }
+```
+```PHP:
+/*
+#基本的なスカフォールドを生成<br>
+php artisan ui bootstrap<br>
+php artisan ui vue<br>
+php artisan ui react<br>
+#ログイン／ユーザー登録スカフォールドを生成<br>
+php artisan ui bootstrap --auth<br>
+php artisan ui vue --auth<br>
+php artisan ui react --auth<br>
+*/
+```
 
-///////////////////////////
-#基本的なスカフォールドを生成
-php artisan ui bootstrap
-php artisan ui vue
-php artisan ui react
-#ログイン／ユーザー登録スカフォールドを生成
-php artisan ui bootstrap --auth
-php artisan ui vue --auth
-php artisan ui react --auth
-///////////////////////////
-
+```PHP:
 laravel-app%php artisan ui bootstrap --auth
 Bootstrap scaffolding installed successfully.
 Please run "npm install && npm run dev" to compile your fresh scaffolding.
 Authentication scaffolding generated successfully.
 #認証機能自動追加される
+```
 
 ./Applications/MAMP/htdocs/laravel-app/app/Http/Controllers/Auth
 - ForgotPasswordController.php
@@ -215,6 +219,7 @@ Auth::routes();
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+```PHP:
 class User extends Authenticatable
 {
     use Notifiable;
@@ -246,9 +251,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 }
+```
 
-------------------------------------
 #register, login  bootstrap適用
+
+```PHP:
 laravel-app%node -v
 v14.15.5
 laravel-app%npm -v
@@ -295,7 +302,7 @@ laravel-app%php artisan serve
 public/css/app.css
 
 
-#フロントサイドのファイル変更を監視し自動コンパイルする
+## フロントサイドのファイル変更を監視し自動コンパイルする
 laravel-app%npm run watch<別ターミナルで起動維持する>
 &
 laravel-app%php artisan serve
@@ -306,7 +313,7 @@ laravel-app%php artisan serve
   Asset     Size   Chunks             Chunk Names
 /css/app.css  179 KiB  /js/app  [emitted]  /js/app
  + 1 hidden asset
-```
+
 
 ## Japanese localization
 ./resources/lang/en
@@ -327,30 +334,16 @@ mv ja/  ./resources/lang
     'attributes' => [
         'password' =>  'パスワード' //追記
     ],
-
+```
 
 # Routing check
-File output
+
+```PHP:
+#File output
 laravel-app%php artisan route:list > route.txt
 
 laravel-app%php artisan route:list
-+--------+----------+------------------------+------------------+------------------------------------------------------------------------+--------------+
-| Domain | Method   | URI                    | Name             | Action                                                                 | Middleware   |
-+--------+----------+------------------------+------------------+------------------------------------------------------------------------+--------------+
-|        | GET|HEAD | /                      |                  | Closure                                                                | web          |
-|        | GET|HEAD | api/user               |                  | Closure                                                                | api,auth:api |
-|        | GET|HEAD | home                   | home             | App\Http\Controllers\HomeController@index                              | web,auth     |
-|        | GET|HEAD | login                  | login            | App\Http\Controllers\Auth\LoginController@showLoginForm                | web,guest    |
-|        | POST     | login                  |                  | App\Http\Controllers\Auth\LoginController@login                        | web,guest    |
-|        | POST     | logout                 | logout           | App\Http\Controllers\Auth\LoginController@logout                       | web          |
-|        | POST     | password/email         | password.email   | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail  | web,guest    |
-|        | GET|HEAD | password/reset         | password.request | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm | web,guest    |
-|        | POST     | password/reset         | password.update  | App\Http\Controllers\Auth\ResetPasswordController@reset                | web,guest    |
-|        | GET|HEAD | password/reset/{token} | password.reset   | App\Http\Controllers\Auth\ResetPasswordController@showResetForm        | web,guest    |
-|        | GET|HEAD | register               | register         | App\Http\Controllers\Auth\RegisterController@showRegistrationForm      | web,guest    |
-|        | POST     | register               |                  | App\Http\Controllers\Auth\RegisterController@register                  | web,guest    |
-|        | GET|HEAD | tests/test             |                  | App\Http\Controllers\TestController@index                              | web          |
-+--------+----------+------------------------+------------------+------------------------------------------------------------------------+--------------+
+```
 
 # Multi login
 【Laravel】マルチログイン(ユーザーと管理者など)機能を設定してみた【体験談】<br>
