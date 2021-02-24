@@ -100,6 +100,38 @@ https://readouble.com/laravel/6.x/ja/migrations.html
 laravel-app%php artisan make:migration create_tests_table
 laravel-app%php artisan migrate
 
+```PHP: make:model -m
+#create modelFile, class CreateContactFormsTable extends Migration
+#Schema::create('contact_forms', function (Blueprint $table) {
+laravel-app%php artisan make:model Models/ContactForm -m
+Model created successfully.
+Created Migration: 2021_02_23_230003_create_contact_forms_table
+#edit migrate File & migrate
+laravel-app%php artisan migrate
+Migrating: 2021_02_23_230003_create_contact_forms_table
+Migrated:  2021_02_23_230003_create_contact_forms_table
+#check MAMP DB
+
+#add table
+#create migrationFile,  class AddTitleToContactFormsTable extends Migration
+#Schema::table('contact_forms', function (Blueprint $table) {
+aravel-app%php artisan make:migration add_title_to_contact_forms_table --table=contact_forms
+Created Migration: 2021_02_23_231435_add_title_to_contact_forms_table
+
+#rollback or rollback --step = n
+#edit  $table->dropColumn('title');
+laravel-app%php artisan migrate:rollback
+Rolling back: 2021_02_23_231435_add_title_to_contact_forms_table
+Rolled back:  2021_02_23_231435_add_title_to_contact_forms_table (0.04 seconds)
+
+laravel-app%php artisan migrate:status
+#check Ran? Yes or No
+```s
+
+
+
+
+
 
 # tinker
 
@@ -348,6 +380,7 @@ laravel-app%php artisan route:list
 # Multi login
 【Laravel】マルチログイン(ユーザーと管理者など)機能を設定してみた【体験談】<br>
 https://coinbaby8.com/laravel-multi-login.html<br>
+
 
 
 # php artisan list
