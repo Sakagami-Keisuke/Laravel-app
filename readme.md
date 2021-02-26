@@ -1,6 +1,6 @@
 # MAC PHP PATH SETTING
 
-```PHP:
+```PHP
 ~%export PATH=/Applications/MAMP/bin/php/php7.3.24/bin:$PATH
 ~%source ~/.bash_profile
 ~%which php
@@ -13,7 +13,7 @@ Zend Engine v3.3.24, Copyright (c) 1998-2018 Zend Technologies
 
 # Laravel project Create
 
-```PHP:
+```PHP
 # /Applications/MAMP/htdocs/laravel-app
 
 ~%cd /Applications/MAMP
@@ -31,7 +31,7 @@ index.php		laravel-app
 
 # GitHub Repository Create & Push
 
-```PHP:
+```PHP
 laravel-app%git init
 Initialized empty Git repository in /Applications/MAMP/htdocs/laravel-app/.git/
 
@@ -59,7 +59,7 @@ Udemyの解説ではDB接続エラーとなった<br>
 解決：【Laravel】access deniedが表示されたときの対処法<br>
 https://coinbaby8.com/access_denied.html
 
-```PHP:
+```PHP
 phpMyAdmin
 ユーザーを作る際に%ではなくlocalhostで設定。
 .envファイル
@@ -100,9 +100,10 @@ https://readouble.com/laravel/6.x/ja/migrations.html
 laravel-app%php artisan make:migration create_tests_table
 laravel-app%php artisan migrate
 
-```PHP: make:model -m
-#create modelFile, class CreateContactFormsTable extends Migration
-#Schema::create('contact_forms', function (Blueprint $table) {
+```PHP
+# make:model -m
+# create modelFile, class CreateContactFormsTable extends Migration
+# Schema::create('contact_forms', function (Blueprint $table) {
 laravel-app%php artisan make:model Models/ContactForm -m
 Model created successfully.
 Created Migration: 2021_02_23_230003_create_contact_forms_table
@@ -129,7 +130,7 @@ laravel-app%php artisan migrate:status
 ```
 # tinker
 
-```PHP:
+```PHP
 laravel-app%php artisan tinker
 Psy Shell v0.9.12 (PHP 7.3.24-(to be removed in future macOS) — cli) by Justin Hileman
 >>> $test = new App\Models\Test;
@@ -185,7 +186,7 @@ APIの定義,ウェブ分散ハイパーメディアシステムのためのソ�
 | PUT/PATCH | /photos/{photo}      | update     | photos.update  |
 | DELETE    | /photos/{photo}      | destroy    | photos.destroy |
 
-```PHP:
+```PHP
 laravel-app%php artisan make:controller ContactFormController --resource
 Controller created successfully.
 #create The action 7method is described.
@@ -195,7 +196,8 @@ Controller created successfully.
 use Illuminate\Support\Facades\Route;
 ```
 
-```PHP:./resources/views/contact/index.blade.php
+```PHP
+# ./resources/views/contact/index.blade.php
 コンタクトフォームのindexです
 
 #./app/Http/Controllers/ContactFormController.php
@@ -251,7 +253,7 @@ https://qiita.com/namizatork/items/801da1d03dc322fad70c<br>
 
 laravel-app%composer require laravel/ui:^1.0 --dev<br>
 
-```
+```PHP
 "require-dev": {
     "facade/ignition": "^1.4",
     "fzaninotto/faker": "^1.4",
@@ -260,8 +262,7 @@ laravel-app%composer require laravel/ui:^1.0 --dev<br>
     "nunomaduro/collision": "^3.0",
     "phpunit/phpunit": "^8.0"
 }
-```
-```PHP:
+
 /*
 #基本的なスカフォールドを生成<br>
 php artisan ui bootstrap<br>
@@ -274,7 +275,7 @@ php artisan ui react --auth<br>
 */
 ```
 
-```PHP:
+```PHP
 laravel-app%php artisan ui bootstrap --auth
 Bootstrap scaffolding installed successfully.
 Please run "npm install && npm run dev" to compile your fresh scaffolding.
@@ -297,7 +298,7 @@ Auth::routes();
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-```PHP:
+```PHP
 class User extends Authenticatable
 {
     use Notifiable;
@@ -333,7 +334,7 @@ class User extends Authenticatable
 
 #register, login  bootstrap適用
 
-```PHP:
+```PHP
 laravel-app%node -v
 v14.15.5
 laravel-app%npm -v
@@ -413,20 +414,17 @@ mv ja/  ./resources/lang
         'password' =>  'パスワード' //追記
     ],
 ```
-
 # Routing check
 
-```PHP:
+```PHP
 #File output
 laravel-app%php artisan route:list > route.txt
 
 laravel-app%php artisan route:list
 ```
-
 # Multi login
 【Laravel】マルチログイン(ユーザーと管理者など)機能を設定してみた【体験談】<br>
 https://coinbaby8.com/laravel-multi-login.html<br>
-
 
 
 # php artisan list
