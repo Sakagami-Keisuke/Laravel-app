@@ -1,5 +1,7 @@
+<!-- ./resources/views/layouts/app.blade.php読込み -->
 @extends('layouts.app')
 
+<!-- ./resources/views/layouts/app.blade.php @yield('content')に挿入する内容記述 -->
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

@@ -4,23 +4,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
+    <!-- metaタグに記載必須：CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <!-- ペルパ:config -->
+    <!-- ./config/app.php -->
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
+    <!-- Javascript読込み -->
+    <!-- ./webpack.mix.js mix.js('resources/js/app.js', 'public/js') .sass('resources/sass/app.scss', 'public/css'); -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
+    <!-- Default: GoogleFont -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!-- Styles -->
+    <!-- css読込み -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
+        <!-- ナビバー -->
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -37,19 +40,21 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
+                     <!-- Authentication Links -->
+                     <!-- 未ログイン時 -->
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">rrouting:nameにregisterがあるとき -->
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
+                            <!-- ログイン時 -->
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
@@ -70,11 +75,12 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav><!-- ナビバー -->
 
-        <main class="py-4">
+        <!-- 継承できない、デフォルト値設定可能な挿入 -->
+        <main class="py-4"></main>
             @yield('content')
-        </main>
+        </main><!-- メインエリア -->
     </div>
 </body>
 </html>

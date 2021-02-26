@@ -13,6 +13,7 @@ return [
     |
     */
 
+    # env:ペルパ  ./.env  APP_NAME=laravel-app
     'name' => env('APP_NAME', 'Laravel'),
 
     /*
