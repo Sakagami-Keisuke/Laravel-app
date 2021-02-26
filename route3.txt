@@ -1,0 +1,26 @@
+# ./routes/web.php
+use Illuminate\Support\Facades\Route;
+
+
+   BadMethodCallException  : Method Illuminate\Routing\Route::get does not exist.
+
+  at /Applications/MAMP/htdocs/laravel-app/vendor/laravel/framework/src/Illuminate/Support/Traits/Macroable.php:77
+    73|      */
+    74|     public static function __callStatic($method, $parameters)
+    75|     {
+    76|         if (! static::hasMacro($method)) {
+  > 77|             throw new BadMethodCallException(sprintf(
+    78|                 'Method %s::%s does not exist.', static::class, $method
+    79|             ));
+    80|         }
+    81|
+
+  Exception trace:
+
+  1   Illuminate\Routing\Route::__callStatic("get")
+      /Applications/MAMP/htdocs/laravel-app/routes/web.php:20
+
+  2   require("/Applications/MAMP/htdocs/laravel-app/routes/web.php")
+      /Applications/MAMP/htdocs/laravel-app/vendor/laravel/framework/src/Illuminate/Routing/RouteFileRegistrar.php:35
+
+  Please use the argument -v to see more details.

@@ -126,13 +126,7 @@ Rolled back:  2021_02_23_231435_add_title_to_contact_forms_table (0.04 seconds)
 
 laravel-app%php artisan migrate:status
 #check Ran? Yes or No
-```s
-
-
-
-
-
-
+```
 # tinker
 
 ```PHP:
@@ -173,6 +167,58 @@ Psy Shell v0.9.12 (PHP 7.3.24-(to be removed in future macOS) — cli) by Justin
 /app/Http/Controllers/TestController.php<br>
 laravel-app%php artisan make:controller TestController<br>
 Controller created successfully.
+
+
+## Resource Controller
+https://readouble.com/laravel/6.x/ja/controllers.html<br>
+Representational State Transfer<br>
+APIの定義,ウェブ分散ハイパーメディアシステムのためのソフトウェアアーキテクチャスタイル<br>
+(RESTful APIとは何なのか)[https://qiita.com/NagaokaKenichi/items/0647c30ef596cedf4bf2]<br>
+
+| 動詞      | URI                  | アクション | ルート名       |
+| --------- | -------------------- | ---------- | -------------- |
+| GET       | /photos              | index      | photos.index   |
+| GET       | /photos/create       | create     | photos.create  |
+| POST      | /photos              | store      | photos.store   |
+| GET       | /photos/{photo}      | show       | photos.show    |
+| GET       | /photos/{photo}/edit | edit       | photos.edit    |
+| PUT/PATCH | /photos/{photo}      | update     | photos.update  |
+| DELETE    | /photos/{photo}      | destroy    | photos.destroy |
+
+```PHP:
+laravel-app%php artisan make:controller ContactFormController --resource
+Controller created successfully.
+#create The action 7method is described.
+./app/Http/Controllers/ContactFormController.php
+
+# ./routes/web.php
+use Illuminate\Support\Facades\Route;
+```
+
+```PHP:./resources/views/contact/index.blade.php
+コンタクトフォームのindexです
+
+#./app/Http/Controllers/ContactFormController.php
+    public function index()
+    {
+        #./resources/views/contact/index.blade.php
+        return view('contact.index');
+    }
+
+# ./routes/web.php
+Route::get('contact/index', 'ContactFormController@index');
+
+laravel-app%php artisan serve
+#http://127.0.0.1:8000/contact/index
+```
+
+## Route Group
+https://readouble.com/laravel/6.x/ja/routing.html
+
+
+
+
+
 
 # よく使用するヘルパ
 route, auth, app, bcrypt, collect, dd, env, factory, old, view<br>
