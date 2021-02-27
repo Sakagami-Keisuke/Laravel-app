@@ -48,6 +48,11 @@ origin  https://github.com/Sakagami-Keisuke/Laravel-app (push)
 laravel-app%git push origin master
 ```
 
+# Debugbar Setting
+Laravel5.7: Laravel Debugbarを使う<br>
+https://qiita.com/sutara79/items/9fd442a81001842aeba1<br>
+laravel-app%composer require barryvdh/laravel-debugbar<br>
+
 # MAMP DatabaseCreate/user-setting & 1st migrate test
 Edit<br>
 /Applications/MAMP/htdocs/laravel-app/.env<br>

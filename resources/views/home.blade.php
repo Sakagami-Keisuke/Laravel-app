@@ -9,12 +9,16 @@
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
                     @endif
-
                     You are logged in!
+                    <br>
+                    <!-- <a href="{{ route('contact.index') }}">一覧へ</a> -->
+                    <button type="button" onclick="window.location='{{ url("contact/index") }}'" class="btn btn-primary mt-2">
+                        一覧へ
+                    </button>
                 </div>
             </div>
         </div>

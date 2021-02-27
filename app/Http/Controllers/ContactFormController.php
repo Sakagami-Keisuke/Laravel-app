@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+#DI：dependent injection
+# ./vendor/laravel/framework/src/Illuminate/Http/Request.php, ./vendor/laravel/framework/src/Illuminate/Http/Concerns
 use Illuminate\Http\Request;
+use App\Models\ContactForm;
 
 class ContactFormController extends Controller
 {
@@ -24,7 +27,8 @@ class ContactFormController extends Controller
      */
     public function create()
     {
-        //
+        #./resources/views/contact/create.blade.php
+        return view('contact.create');
     }
 
     /**
@@ -35,7 +39,24 @@ class ContactFormController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // インスタンス化
+        $contact = new ContactForm;
+
+        //Requestオブジェクトから取得する
+        $contact->your_name = $request->input('your_name');
+        $contact->title = $request->input('title');
+        $contact->email = $request->input('email');
+        $contact->url = $request->input('url');
+        $contact->gender = $request->input('gender');
+        $contact->age = $request->input('age');
+        $contact->contact = $request->input('contact');
+        // デバッグ
+        // dd($your_name,$title,$email,$url,$gender,$age,$contact);
+        // dd($contact);
+
+        $contact->save();
+
+        return redirect('contact/index');
     }
 
     /**
