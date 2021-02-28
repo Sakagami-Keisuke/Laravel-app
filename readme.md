@@ -515,68 +515,6 @@ public function index()
 </table>
 ```
 
-# Showpage
-
-```PHP
-#./app/Http/Controllers/ContactFormController.php
-public function show($id)
-{
-    //Eloquent
-    $contact = ContactForm::find($id);
-    // valueを日本語に変換
-    if ($contact->gender === 0) {$gender = '男性';}
-    if ($contact->gender === 1) {$gender = '女性';}
-    if ($contact->age    === 1) {$age = '~19歳';}
-    if ($contact->age    === 2) {$age = '20~29歳';}
-    if ($contact->age    === 3) {$age = '30~39歳';}
-    if ($contact->age    === 4) {$age = '40~49歳';}
-    if ($contact->age    === 5) {$age = '50~59歳';}
-    if ($contact->age    === 6) {$age = '60歳~';}
-
-    return view('contact.show', compact('contact', 'gender', 'age'));
-}
-
-#./resources/views/contact/show.blade.php
-{{ $contact->your_name}}<br>
-{{ $contact->title}}<br>
-{{ $contact->email}}<br>
-{{ $contact->url}}<br>
-{{ $age}}<br>
-{{ $gender}}<br>
-{{ $contact->created_at}}<br>
-<form method="GET" action="{{ route('contact.edit', ['id'=>$contact->id]) }}">
-    @csrf
-    <input class="btn btn-info" type="submit" value="編集する">
-</form>
-<!-- <a href="{{ route('contact.index') }}">もどる</a> -->
-<button type="button" onclick="window.location='{{ url("contact/index") }}'" class="btn btn-primary mt-2">
-    一覧へもどる
-</button>
-```
-
-# Editpage
-
-```PHP
-#./app/Http/Controllers/ContactFormController.php
-public function edit($id)
-{
-    $contact= ContactForm::find($id);
-
-    return view('contact.edit', compact('contact'));
-}
-```
-# Update
-
-```PHP
-
-```
-# Delete
-
-```PHP
-
-```
-
-
 
 # Multi login
 【Laravel】マルチログイン(ユーザーと管理者など)機能を設定してみた【体験談】<br>
