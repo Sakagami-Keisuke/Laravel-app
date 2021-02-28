@@ -17,7 +17,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the application ダッシュボード.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */

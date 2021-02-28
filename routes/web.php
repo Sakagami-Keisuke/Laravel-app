@@ -30,6 +30,9 @@ Route::group(
         Route::get('index', 'ContactFormController@index')->name('contact.index');
         Route::get('create', 'ContactFormController@create')->name('contact.create');
         Route::post('store', 'ContactFormController@store')->name('contact.store');
+        Route::get('show/{id}', 'ContactFormController@show')->name('contact.show');
+        // Route::get('{id}/edit', 'ContactFormController@edit')->name('contact.edit');
+        Route::get('edit/{id}', 'ContactFormController@edit')->name('contact.edit');
     }
 );
 

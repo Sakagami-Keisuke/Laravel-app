@@ -5,14 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <h2><div class="card-header">ダッシュボード/create</div></h2>
                 <div class="card-body">
                     @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}
                     </div>
                     @endif
-                    SUCCCES!! Contact Create!
                     <br>
                     <form method="POST" action="{{ route('contact.store')}}">
                     @csrf
@@ -29,8 +28,8 @@
                         <input type="url" name="url">
                         <br>
                         性別
-                        <input type="radio" name="gender" value="0" 男性></input>
-                        <input type="radio" name="gender" value="1" 女性></input>
+                        <input type="radio" name="gender" value="0">男性</input>
+                        <input type="radio" name="gender" value="1">女性</input>
                         <br>
                         年齢
                         <select name="age">
