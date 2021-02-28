@@ -15,7 +15,7 @@
                     </div>
                     @endif
                     <br>
-                    <form method="POST" action="">
+                    <form method="POST" action="{{ route('contact.update', ['id'=>$contact->id] ) }}">
                         @csrf
                         氏名
                         <input type="text" name="your_name" value=" {{ $contact->your_name}} ">
@@ -55,6 +55,10 @@
                     <form method="GET" action="{{ route('contact.show', ['id'=>$contact->id]) }}">
                         @csrf
                         <input class="btn btn-info mt-2" type="submit" value="詳細にもどる">
+                    </form>
+                    <form method="GET" action="{{ route('contact.index') }}">
+                        @csrf
+                        <input class="btn btn-info mt-2" type="submit" value="一覧にもどる">
                     </form>
                 </div>
             </div>

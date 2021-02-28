@@ -19,6 +19,7 @@
                     {{ $contact->url}}<br>
                     {{ $age}}<br>
                     {{ $gender}}<br>
+                    {{ $contact->contact}}<br>
                     {{ $contact->created_at}}<br>
                     <form method="GET" action="{{ route('contact.edit', ['id'=>$contact->id]) }}">
                         @csrf

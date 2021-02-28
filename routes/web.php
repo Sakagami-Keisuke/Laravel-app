@@ -33,6 +33,7 @@ Route::group(
         Route::get('show/{id}', 'ContactFormController@show')->name('contact.show');
         // Route::get('{id}/edit', 'ContactFormController@edit')->name('contact.edit');
         Route::get('edit/{id}', 'ContactFormController@edit')->name('contact.edit');
+        Route::POST('update/{id}', 'ContactFormController@update')->name('contact.update');
     }
 );
 
