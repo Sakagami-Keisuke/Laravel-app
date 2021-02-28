@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 #DI：dependent injection
 # ./vendor/laravel/framework/src/Illuminate/Http/Request.php, ./vendor/laravel/framework/src/Illuminate/Http/Concerns
-use Illuminate\Http\Request;
 use App\Models\ContactForm;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ContactFormController extends Controller
 {
@@ -16,8 +17,23 @@ class ContactFormController extends Controller
      */
     public function index()
     {
+        //Eloquent ORMapper  オブジェクト全て取得
+        $contacts = ContactForm::all();
+
+        //QueryBuilder
+        // 取得テーブル
+        $contacts = DB::table('contact_forms')
+            // 取得カラム
+            ->select('id', 'your_name', 'title', 'email', 'url', 'gender', 'age', 'contact', 'created_at')
+            // 降順
+            ->orderBy('created_at', 'desc')
+            // 取得
+            ->get();
+        // dd($contacts);
+
         #./resources/views/contact/index.blade.php
-        return view('contact.index');
+        # compact('contacts')：$contactをビュー側に返す
+        return view('contact.index', compact('contacts'));
     }
 
     /**
@@ -54,7 +70,7 @@ class ContactFormController extends Controller
         // dd($your_name,$title,$email,$url,$gender,$age,$contact);
         // dd($contact);
 
-        $contact->save();
+        $contact->save();#check MAMP phpMyAdmin
 
         return redirect('contact/index');
     }

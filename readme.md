@@ -427,6 +427,95 @@ laravel-app%php artisan route:list > route.txt
 
 laravel-app%php artisan route:list
 ```
+
+# DB挿入
+
+```PHP
+# ./routes/web.php
+Route::get('create', 'ContactFormController@create')->name('contact.create');
+
+# ./app/Http/Controllers/ContactFormController.php
+public function create()
+{
+    #./resources/views/contact/create.blade.php
+    return view('contact.create');
+}
+
+public function store(Request $request)
+{
+    // インスタンス化
+    $contact = new ContactForm;
+    //Requestオブジェクトから取得する
+    $contact->your_name = $request->input('your_name');
+    $contact->title = $request->input('title');
+    $contact->email = $request->input('email');
+    $contact->url = $request->input('url');
+    $contact->gender = $request->input('gender');
+    $contact->age = $request->input('age');
+    $contact->contact = $request->input('contact');
+    // デバッグ
+    // dd($your_name,$title,$email,$url,$gender,$age,$contact);
+    // dd($contact);
+
+    $contact->save(); #check MAMP phpMyAdmin
+
+    return redirect('contact/index');
+}
+```
+
+# DB取得
+
+```PHP
+# ./routes/web.php
+Route::post('store', 'ContactFormController@store')->name('contact.store');
+
+# ./app/Http/Controllers/ContactFormController.php
+public function index()
+{
+    //Eloquent ORMapper  オブジェクト全て取得
+    $contacts = ContactForm::all();
+    //QueryBuilder
+    // 取得テーブル
+    $contacts = DB::table('contact_forms')
+        // 取得カラム
+        ->select('id', 'your_name', 'title', 'email', 'url', 'gender', 'age', 'contact', 'created_at')
+        // 降順
+        ->orderBy('created_at', 'desc')
+        // 取得
+        ->get();
+    // dd($contacts);
+
+    #./resources/views/contact/index.blade.php
+    # compact('contacts')：$contactをビュー側に返す
+    return view('contact.index', compact('contacts'));
+}
+
+# ./resources/views/contact/index.blade.php
+<table class="table">
+  <thead>
+      <tr>
+          <th scope="col">ID:</th>
+          <th scope="col">氏名:</th>
+          <th scope="col">件名:</th>
+          <th scope="col">email:</th>
+          <th scope="col">登録日時:</th>
+      </tr>
+  </thead>
+  <tbody>
+      @foreach($contacts as $contact)
+      <tr>
+          <th>{{ $contact->id}}</th>
+          <td>{{ $contact->your_name}}</td>
+          <td>{{ $contact->title}}</td>
+          <td>{{ $contact->email}}</td>
+          <td>{{ $contact->created_at}}</td>
+          @endforeach
+      </tr>
+  </tbody>
+</table>
+```
+
+
 # Multi login
 【Laravel】マルチログイン(ユーザーと管理者など)機能を設定してみた【体験談】<br>
 https://coinbaby8.com/laravel-multi-login.html<br>
