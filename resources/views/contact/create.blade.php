@@ -5,34 +5,48 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <h2><div class="card-header">ダッシュボード/create</div></h2>
+                <h2>
+                    <div class="card-header">ダッシュボード/create</div>
+                </h2>
                 <div class="card-body">
                     @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}
                     </div>
                     @endif
-                    <br>
+                    <!-- エラー表示 ./resources/lang/ja/validation.php -->
+                    @if ($errors->any())
+                    <div class="alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>
+                                {{ $error}}
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+
                     <form method="POST" action="{{ route('contact.store')}}">
-                    @csrf
+                        @csrf
                         氏名
-                        <input type="text" name="your_name">
+                        <input type="text" name="your_name" value="{{ old("your_name") }}">
                         <br>
                         件名
-                        <input type="text" name="title">
+                        <input type="text" name="title" value="{{ old("title") }}">
                         <br>
                         メールアドレス
-                        <input type="email" name="email">
+                        <input type="email" name="email" value="{{ old("email") }}">
                         <br>
                         ホームページ
-                        <input type="url" name="url">
+                        <input type="url" name="url" value="{{ old("url") }}">
                         <br>
                         性別
-                        <input type="radio" name="gender" value="0">男性</input>
-                        <input type="radio" name="gender" value="1">女性</input>
+                        <input type="radio" name="gender" value="0" value="{{ old("gender") }}">男性</input>
+                        <input type="radio" name="gender" value="1" value="{{ old("gender") }}">女性</input>
                         <br>
                         年齢
-                        <select name="age">
+                        <select name="age" value="{{ old("age") }}">
                             <option value="">選択してください</option>
                             <option value="1">~19歳</option>
                             <option value="2">20歳~29歳</option>
@@ -43,7 +57,7 @@
                         </select>
                         <br>
                         お問い合わせ内容
-                        <textarea name="contact"></textarea>
+                        <textarea name="contact" value="{{ old("contact") }}"></textarea>
                         <br>
                         <input type="checkbox" name="caution" value="1">注意事項に同意する
                         <br>

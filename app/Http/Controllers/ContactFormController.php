@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 #DI：dependent injection
 # ./vendor/laravel/framework/src/Illuminate/Http/Request.php, ./vendor/laravel/framework/src/Illuminate/Http/Concerns
-use App\Models\ContactForm;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreContactForm;
+use App\Models\ContactForm;
 use App\Services\CheckFormData;
+use Illuminate\Support\Facades\DB;
 
 class ContactFormController extends Controller
 {
@@ -54,7 +55,7 @@ class ContactFormController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreContactForm $request)
     {
         // インスタンス化
         $contact = new ContactForm;

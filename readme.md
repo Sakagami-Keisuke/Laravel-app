@@ -514,7 +514,47 @@ public function index()
   </tbody>
 </table>
 ```
+# Validation & ErrorMessage
 
+```PHP
+# ./app/Http/Requests/StoreContactForm.php
+laravel-app%php artisan make:request StoreContactForm
+Request created successfully.
+
+public function rules()
+    {
+        return [
+            'your_name' => 'required|string|max:20',
+            'title' => 'required|string|max:50',
+            'email' => 'required|email|unique:users|max:255',
+            'url' => 'url|nullable',
+            'gender' => 'required',
+            'age' => 'required',
+            'contact' => 'required|string|max:200',
+            'caution' => 'required|accepted',
+        ];
+    }
+
+
+# ./app/Http/Controllers/ContactFormController.php
+    public function store(StoreContactForm $request){
+
+# ./resources/views/contact/create.blade.php
+    @if ($errors->any())
+    <div class="alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>
+                {{ $error}}
+            </li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
+# input-value retention
+<input type="text" name="your_name" value="{{ old("your_name") }}">
+```
 
 # Multi login
 【Laravel】マルチログイン(ユーザーと管理者など)機能を設定してみた【体験談】<br>
