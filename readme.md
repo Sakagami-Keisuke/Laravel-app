@@ -555,6 +555,57 @@ public function rules()
 # input-value retention
 <input type="text" name="your_name" value="{{ old("your_name") }}">
 ```
+# Dummy data generation
+
+```PHP
+#create ./database/seeds/UsersTableSeeder.php
+ laravel-app%php artisan make:seeder UsersTableSeeder
+
+
+#edit ./database/seeds/UsersTableSeeder.php
+public function run()
+{
+    //query builder
+    DB::table('users')->insert([
+        [
+            'name' => 'Keisuke Sakagami',  // 'name' =>Str::random(10),
+            'email' => 'iwayasunset@gmail.com',  // 'email'=>Str::random(10),
+            'password' => Hash::make('admin'),
+        ], [
+            'name' => 'テストユーザー',
+            'email' => 'test@test.com',
+            'password' => Hash::make('test123'),
+        ]
+    ]);
+}
+
+#Generating optimized autoload files
+laravel-app%composer dump-autoload
+#./composer.json
+"autoload": {
+    "psr-4": {
+        "App\\": "app/"
+    },
+    "classmap": [
+        "database/seeds",
+        "database/factories"
+    ]
+},
+
+#Dummy data generation
+laravel-app%php artisan db:seed
+Seeding: UsersTableSeeder
+Seeded:  UsersTableSeeder (0.21 seconds)
+Database seeding completed successfully.
+
+#When there is an error duplicating an existing record
+ laravel-app%php artisan migrate:refresh --seed
+# or
+ laravel-app%php artisan migrate:refresh
+ laravel-app%php artisan db:seed
+```
+
+
 
 # Multi login
 【Laravel】マルチログイン(ユーザーと管理者など)機能を設定してみた【体験談】<br>
