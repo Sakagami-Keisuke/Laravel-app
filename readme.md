@@ -605,6 +605,63 @@ Database seeding completed successfully.
  laravel-app%php artisan db:seed
 ```
 
+# Factory & Faker Dummy data generation
+https://readouble.com/laravel/6.x/ja/database-testing.html<br>
+./composer.json<br/>
+"fzaninotto/faker": "^1.4",<br/>
+https://github.com/fzaninotto/Faker<br>
+https://github.com/fzaninotto/Faker<br>
+[Laravel tinker で Faker を試す方法](https://qiita.com/ucan-lab/items/bc421788d4a352afc6ea)<br>
+```PHP
+#create ./database/factories/ContactFormFactory.php
+laravel-app%php artisan make:factory ContactFormFactory
+
+./database/factories/ContactFormFactory.php
+//use App\Model;
+use App\Models\ContactForm;
+
+// $factory->define(Models::class, function (Faker $faker) {
+$factory->define(ContactForm::class, function (Faker $faker) {
+
+# ./config/app.php
+// 'faker_locale' => 'en_US',
+'faker_locale' => 'ja_JP',
+
+#./database/factories/ContactFormFactory.php
+$factory->define(ContactForm::class, function (Faker $faker) {
+    return [
+        'your_name' => $faker->name,
+        'title' => $faker->realText(50),
+        'email' => $faker->unique()->email,
+        'url' => $faker->url,
+        'gender' => $faker->randomElement(['0', '1']),
+        'age' => $faker->numberBetween($min = 1, $max = 6),
+        'contact' => $faker->realText(200),
+    ];
+});
+
+# ./database/seeds/ContactformSeeder.php
+laravel-app%php artisan make:seeder ContactformSeeder
+
+use App\Models\ContactForm;
+
+public function run()
+{
+    factory(ContactForm::class, 200)->create(); //200のダミーデータ生成
+}
+
+# ./database/seeds/DatabaseSeeder.php
+public function run()
+{
+    $this->call(UsersTableSeeder::class);
+    $this->call(ContactFormSeeder::class);
+}
+
+
+ laravel-app%composer dump-autoload
+  &
+ laravel-app%php artisan migrate:fresh --seed
+```
 
 
 # Multi login
