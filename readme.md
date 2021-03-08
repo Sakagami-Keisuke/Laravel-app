@@ -610,7 +610,6 @@ https://readouble.com/laravel/6.x/ja/database-testing.html<br>
 ./composer.json<br/>
 "fzaninotto/faker": "^1.4",<br/>
 https://github.com/fzaninotto/Faker<br>
-https://github.com/fzaninotto/Faker<br>
 [Laravel tinker で Faker を試す方法](https://qiita.com/ucan-lab/items/bc421788d4a352afc6ea)<br>
 ```PHP
 #create ./database/factories/ContactFormFactory.php
@@ -662,6 +661,33 @@ public function run()
   &
  laravel-app%php artisan migrate:fresh --seed
 ```
+
+# Pagination
+https://readouble.com/laravel/6.x/ja/pagination.html<br>
+ページネーション(ページ切り替え)の実装方法いろいろ<br>
+https://qiita.com/neustrashimy/items/3932382c267d04413b4e<br>
+
+```PHP
+# ./app/Http/Controllers/ContactFormController.php
+//QueryBuilder
+$contacts = DB::table('contact_forms')
+    // 取得カラム
+    ->select('id', 'your_name', 'title', 'email', 'url', 'gender', 'age', 'contact', 'created_at')
+    // 降順
+    ->orderBy('created_at', 'desc')
+    // pagination
+    ->paginate(20);
+
+# ./resources/views/contact/index.blade.php
+{{ $contacts->links() }}
+
+#親クラス ./vendor/laravel/framework/src/Illuminate/Pagination/AbstractPaginator.php
+#子クラス
+#normal ./vendor/laravel/framework/src/Illuminate/Pagination/LengthAwarePaginator.php
+#simple ./vendor/laravel/framework/src/Illuminate/Pagination/Paginator.php
+#デザイン ./vendor/laravel/framework/src/Illuminate/Pagination/resources/views
+```
+
 
 
 # Multi login

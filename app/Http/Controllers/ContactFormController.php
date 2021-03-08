@@ -23,14 +23,16 @@ class ContactFormController extends Controller
         $contacts = ContactForm::all();
 
         //QueryBuilder
-        // 取得テーブル
         $contacts = DB::table('contact_forms')
             // 取得カラム
             ->select('id', 'your_name', 'title', 'email', 'url', 'gender', 'age', 'contact', 'created_at')
             // 降順
             ->orderBy('created_at', 'desc')
             // 取得
-            ->get();
+            // ->get();
+            // pagination
+            ->paginate(20);
+
         // dd($contacts);
 
         #./resources/views/contact/index.blade.php

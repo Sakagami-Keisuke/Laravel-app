@@ -5,7 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <h2><div class="card-header">ダッシュボード/index</div></h2>
+                <h2>
+                    <div class="card-header">ダッシュボード/index</div>
+                </h2>
                 <div class="card-body">
                     @if (session('status'))
                     <div class="alert alert-success" role="alert">
@@ -21,6 +23,10 @@
                     <button type="button" onclick="window.location='{{ url("home") }}'" class="btn btn-primary mt-2 mb-3 ml-2">
                         ホームへ
                     </button>
+
+                    <div>
+                    
+                    </div>
                     <table class="table">
                         <thead>
                             <tr>
@@ -41,12 +47,17 @@
                                 <td>{{ $contact->email}}</td>
                                 <td>{{ $contact->created_at}}</td>
                                 <td>
-                                <a href="{{ route('contact.show', ['id'=> $contact->id]) }}">詳細を見る</a>
+                                    <a href="{{ route('contact.show', ['id'=> $contact->id]) }}">詳細を見る</a>
                                 </td>
                                 @endforeach
                             </tr>
                         </tbody>
                     </table>
+                    <div class="row">
+                        <div class="col-5 mx-auto">
+                            {{ $contacts->links() }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
