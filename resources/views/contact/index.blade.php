@@ -24,8 +24,15 @@
                         ホームへ
                     </button>
 
+                    <!-- 検索フォーム name="search"必須 -->
+                    <form class="d-flex" method="GET" action="{{ route('contact.index')}}">
+                        <input name="search" class="form-control me-2 col-3 mb-2"  type="search" placeholder="検索フォーム" aria-label="Search">
+                        <button class="btn btn-outline-success mb-2 ml-2" type="submit">検索</button>
+                    </form>
+
+
                     <div>
-                    
+
                     </div>
                     <table class="table">
                         <thead>
