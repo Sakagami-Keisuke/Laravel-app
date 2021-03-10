@@ -718,6 +718,124 @@ $contacts = $qb->paginate(20);
 ```
 
 
+# PHP Unit Test
+
+```PHP
+#edit ./app/Sample.php
+
+laravel-app%php artisan make:test Sample/SampleTest --unit
+# create ./tests/Unit/Sample/SampleTest.php
+namespace Tests\Unit\Sample;
+use PHPUnit\Framework\TestCase;
+use App\Sample;
+
+class SampleTest extends TestCase
+{
+    public function test_add()
+    {
+        $sample=new Sample;
+        $sum=$sample->add(5, 3);
+        $this->assertEquals(8, $sum);
+    }
+
+    /**
+     *
+     * @test
+     */
+    public function 引き算()
+    {
+        $sample=new Sample;
+        $sum=$sample->sub(5, 3);
+        $this->assertEquals(2, $sum);
+    }
+}
+
+#テスト実行
+laravel-app%./vendor/bin/phpunit tests/Unit/Sample/SampleTest.php
+
+PHPUnit 8.5.14 by Sebastian Bergmann and contributors.
+..                                                                  2 / 2 (100%)
+Time: 693 ms, Memory: 18.00 MB
+OK (2 tests, 2 assertions)
+```
+
+## Models Test
+
+```PHP
+laravel-app%php artisan make:test Database/DatabaseTest
+# create ./tests/Feature/Database/DatabaseTest.php
+
+#カラム存在テスト
+use Illuminate\Support\Facades\Schema;
+use Tests\TestCase;
+
+class DatabaseTest extends TestCase
+{
+    public function testDatabase()
+    {
+        $this->assertTrue(
+            Schema::hasColumn('users', 'id'),
+            1
+        );
+    }
+}
+# テスト実行
+laravel-app%./vendor/bin/phpunit tests/Feature/Database/DatabaseTest.php
+PHPUnit 8.5.14 by Sebastian Bergmann and contributors.
+.                                                                   1 / 1 (100%)
+Time: 666 ms, Memory: 20.00 MB
+OK (1 test, 1 assertion)
+
+#レコード挿入テスト
+# ./tests/Feature/Database/DatabaseTest.php
+use Tests\TestCase;
+use App\Models\User;
+
+class DatabaseTest extends TestCase
+{
+    use RefreshDatabase;
+
+    public function testDatabase()
+    {
+        $testUser = new User();
+        $testUser->id = '3';
+        $testUser->name = 'テストユーザー';
+        $testUser->email = 'testUuser1@test.com';
+        $testUser->password = 'test9876';
+        $saveUser = $testUser->save();
+
+        $this->assertTrue($saveUser);
+    }
+#テスト実行
+laravel-app%./vendor/bin/phpunit tests/Feature/Database/DatabaseTest.php
+PHPUnit 8.5.14 by Sebastian Bergmann and contributors.
+.                                                                   1 / 1 (100%)
+Time: 891 ms, Memory: 22.00 MB
+OK (1 test, 1 assertion)
+
+
+#レコード存在テスト
+# ./tests/Feature/Database/DatabaseTest.php
+class DatabaseTest extends TestCase
+{
+    public function testDatabase()
+    {
+        $this->assertDatabaseHas('users', [
+            'name'=> 'Keisuke Sakagami',
+            'email'=>'test@test.com'
+        ]);
+    }
+}
+#テスト実行
+ laravel-app%./vendor/bin/phpunit tests/Feature/Database/DatabaseTest.php
+PHPUnit 8.5.14 by Sebastian Bergmann and contributors.
+.                                                                   1 / 1 (100%)
+Time: 693 ms, Memory: 20.00 MB
+OK (1 test, 1 assertion)
+```
+
+
+
 # Multi login
 【Laravel】マルチログイン(ユーザーと管理者など)機能を設定してみた【体験談】<br>
 https://coinbaby8.com/laravel-multi-login.html<br>
