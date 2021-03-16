@@ -662,6 +662,115 @@ public function run()
  laravel-app%php artisan migrate:fresh --seed
 ```
 
+## Relation　1:1
+
+```PHP
+#create migtationFile ModelsFile
+laravel-app%php artisan make:model Models/Area -m
+#Model created successfully.
+#Created Migration: 2021_03_15_222529_create_areas_tab
+#./database/migrations/2021_03_15_222529_create_areas_table.php
+public function up()
+{
+    Schema::create('areas', function (Blueprint $table) {
+        $table->bigIncrements('id');
+        $table->string('name', 20);
+        $table->integer('sort_no');
+        $table->timestamps();
+    });
+}
+laravel-app%php artisan make:model Models/Route -m
+laravel-app%php artisan make:model Models/Shop -m
+#./database/migrations/2021_03_15_222611_create_shops_table.php
+public function up()
+{
+    Schema::create('shops', function (Blueprint $table) {
+        $table->bigIncrements('id');
+        $table->string('shop_name', 20);
+        $table->unsignedBigInteger('area_id'); //unsigned
+        $table->timestamps();
+    });
+}
+
+#create seeder
+laravel-app%php artisan make:seed AreaSeeder
+#edit ./database/seeds/AreaSeeder.php
+laravel-app%php artisan make:seed ShopSeeder 
+#edit ./database/seeds/ShopSeeder.php
+
+#edit ./database/seeds/DatabaseSeeder.php
+public function run()
+{
+    $this->call(UsersTableSeeder::class);
+    $this->call(ContactformSeeder::class);
+    $this->call(AreaSeeder::class);
+    $this->call(ShopSeeder::class);
+}
+
+laravel-app%composer dump-autoload
+
+laravel-app%php artisan migrate:fresh --seed
+```
+
+# SQL
+
+```SQL
+#バッククォート shift + @
+SELECT * FROM `shops`
+
+#shopsテーブルにareasテーブルを結合
+SELECT * FROM 	 `shops`
+INNER JOIN `areas`   --or LEFT JOIN
+ON `shops`.`area_id` = `areas`.`id`
+```
+
+```PHP
+#QueryBuilder
+$qb = DB::table('shops')
+        ->join('areas', 'shops.area_id', '=', 'areas.id)
+        ->select('shops')
+        ->get();
+
+$qb = DB::table('shops')
+        ->leftjoin('areas', 'shops.area_id', '=', 'areas.id)
+        ->get();
+```
+
+## Relation　1:many
+
+```PHP
+# ./app/Models/Area.php
+public function shops(){
+    return $this->hasMany('App\Models\Shop');
+}
+
+# ./app/Models/Shop.php
+public function area(){
+    return $this->belongsTo('App\Models\Area');
+}
+
+# ./routes/web.php
+Route::get('shops/index', 'shopController@index');
+
+laravel-app%php artisan make:controller ShopController
+# ./app/Http/Controllers/ShopController.php
+use App\Models\Area;
+
+class ShopController extends Controller
+{
+    public function index(){
+        //主 -> 従
+        $area_tokyo = Area::find(1)->shops;
+          dd($area_tokyo);
+        $shop = Shop::find(1)->area->name;
+          dd($shop);
+    }
+}
+```
+
+
+
+
 # Pagination
 https://readouble.com/laravel/6.x/ja/pagination.html<br>
 ページネーション(ページ切り替え)の実装方法いろいろ<br>
@@ -759,7 +868,7 @@ Time: 693 ms, Memory: 18.00 MB
 OK (2 tests, 2 assertions)
 ```
 
-## Models Test
+## Model-DB Test
 
 ```PHP
 laravel-app%php artisan make:test Database/DatabaseTest

@@ -23,6 +23,10 @@ Route::get('/', function () {
 Route::get('tests/test', 'TestController@index');
 // Route::get('contact/index', 'ContactFormController@index');
 
+//relation
+Route::get('shops/index', 'shopController@index');
+
+
 #login認証されていたら表示する
 Route::group(
     ['prefix' => 'contact', 'middleware' => 'auth'],
