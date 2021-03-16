@@ -18,6 +18,8 @@ class CreateShopsTable extends Migration
             $table->string('shop_name', 20);
             $table->unsignedBigInteger('area_id'); //unsigned
             $table->timestamps();
+            //外部キー制約
+            $table->foreign('area_id')->references('id')->on('areas');
         });
     }
 

@@ -768,8 +768,16 @@ class ShopController extends Controller
 }
 ```
 
+## 外部キー制約
 
+```PHP
+# ./database/migrations/2021_03_15_222611_create_shops_table.php
+//外部キー制約
+$table->foreign('area_id')->references('id')->on('areas');
 
+laravel-app%php artisan migrate:fresh --seed
+#The parent and child id to check for consistency in advance.
+```
 
 # Pagination
 https://readouble.com/laravel/6.x/ja/pagination.html<br>

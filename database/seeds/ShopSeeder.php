@@ -30,7 +30,7 @@ class ShopSeeder extends Seeder
             [
                 'id' => 4,
                 'shop_name' => '高級メロンパン屋',
-                'area_id' => 4, //FK
+                'area_id' => 3, //FK
             ]
         ]);
     }
